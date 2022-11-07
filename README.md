@@ -12,12 +12,24 @@ In order to handle this problematic and find a feasible price range for a specif
 #### Method 1(Confidence Interval Approach): 
 Using the “Item_Id”, “Price”, “Order_qty” and “Order_Id” of the ''Order'' dataframe from the item you want to analyze, the mean and standard deviation of the prices of each item sold is found. Then a Confidence interval of  95% with Z=1.96 was used to find the Lower and Upper Limit. Finally, this will represent the minimum and maximum reasonable price.
 
+PS5 GAME example:
+![method1](https://user-images.githubusercontent.com/101158689/200395189-7ddd8db5-4ca4-4c9d-8ee5-36c188dd87de.jpg)
+
+
 #### Method 2(Regression Approach): 
 Utilizing the results found in 2, we drop these items with Unreasonable prices, in order to clean the database and have a more accurate reasonable price. Next we clean the item_title field and create two new columns, one for the Chinese language and the other for the English language. Then, we preprocess each column depending on the features of the languages. Finally, we fit the mentioned columns and the price to a LGBM Regressor. To obtain the reasonable price we input a keyword and the model will return the reasonable price. This approach works under the assumption that all the items fed to the regressor are similar.
 
+PS5 GAME example:
+![method2](https://user-images.githubusercontent.com/101158689/200395207-edccfa50-b761-42f8-bcfd-51fc81063da2.jpg)
+
+
 #### Method 3(Quartiles Approach): 
 First, making a Box plot diagram of the Price of the item, from the ''Order'' dataframe,and also from the ''Goods'' data frame with dropped outliers found in step 2, was made. Then, the Quartiles 1 (25%) and 3 (75%) were utilized from the two Box plots to do an overlap. To do this, we have to find the max value of the Q1 between the tho dataframes and the min value of the Q3 also from the two dataframes. And these two values would represent the minimum and maximum reasonable price.
-EXAMPLE IMAGE:
+
+PS5 GAME example:
+![method3](https://user-images.githubusercontent.com/101158689/200395217-a09b3f36-945f-46c2-af63-d06692b937c6.jpg)
+![method3part2](https://user-images.githubusercontent.com/101158689/200395234-11bb3530-43c7-47d1-9a0b-4a6cf99c29ac.jpg)
+
 
 
 
